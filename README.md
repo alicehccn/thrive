@@ -1,3 +1,3 @@
-# Thrive
+# Thrivé
 
 ## Provider API
