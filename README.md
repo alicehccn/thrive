@@ -1,3 +1,3 @@
 # Thrivé
 
-## Provider API
+## Sessions API
