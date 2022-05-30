@@ -1,3 +1,3 @@
 export class CreateResponseSchema {
-  id: string
+  id: string;
 }

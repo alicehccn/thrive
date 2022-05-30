@@ -1,3 +1,3 @@
 export class CancelRequestSchema {
-  id: string
+  id: string;
 }
