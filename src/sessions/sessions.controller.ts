@@ -8,8 +8,8 @@ import {
   Delete,
 } from "@nestjs/common";
 import { SessionsService } from "./sessions.service";
-import { CreateSessionDto } from "./dto/create-session.dto";
-import { UpdateSessionDto } from "./dto/update-session.dto";
+import { CreateSessionSchema } from "./schemas/create-session.schema";
+import { UpdateSessionSchema } from "./schemas/update-session.schema";
 
 @Controller("sessions")
 export class SessionsController {
@@ -27,13 +27,13 @@ export class SessionsController {
   }
 
   @Post()
-  create(@Body() createSessionDto: CreateSessionDto) {
-    return this.sessionsService.create(createSessionDto);
+  create(@Body() createSessionSchema: CreateSessionSchema) {
+    return this.sessionsService.create(createSessionSchema);
   }
 
   @Patch(":id")
-  update(@Param("id") id: string, @Body() updateSessionDto: UpdateSessionDto) {
-    return this.sessionsService.update(id, updateSessionDto);
+  update(@Param("id") id: string, @Body() updateSessionSchema: UpdateSessionSchema) {
+    return this.sessionsService.update(updateSessionSchema);
   }
 
   @Delete(":id")
