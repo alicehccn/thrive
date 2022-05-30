@@ -1,6 +1,6 @@
-import { Session } from "src/sessions/entities";
-import { CreateRequestSchema } from "src/sessions/schemas";
-import { uuid } from "uuidv4";
+import { Session } from 'src/sessions/entities';
+import { CreateRequestSchema } from 'src/sessions/schemas';
+import { uuid } from 'uuidv4';
 
 export const sessionMock = (): Session => {
   return {
@@ -8,7 +8,7 @@ export const sessionMock = (): Session => {
     time: new Date(),
     patient: uuid(),
     provider: uuid(),
-    channel: "zoom-url.com",
+    channel: 'zoom-url.com',
   };
 };
 
