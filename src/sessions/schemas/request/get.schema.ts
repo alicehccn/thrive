@@ -1,3 +1,3 @@
 export class GetRequestSchema {
-  Id?: string
+  id?: string
 }

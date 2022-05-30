@@ -13,11 +13,12 @@ export class SessionsService {
   }
 
   create(createSessionRequest: CreateRequestSchema) {
-    return 'This action adds a new session ' + createSessionRequest.Id
+    return 'This action adds a new session ' + createSessionRequest.id
   }
 
   update(updateSessionRequest: UpdateRequestSchema) {
-    return 'This action updates session ' + updateSessionRequest.Id
+    console.log(updateSessionRequest)
+    return 'This action updates session'
   }
 
   cancel(id: string) {

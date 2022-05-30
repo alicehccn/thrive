@@ -25,7 +25,7 @@ export class SessionsController {
     return this.sessionsService.findAll()
   }
 
-  @Post()
+  @Post(':id')
   create(@Body() createRequestSchema: CreateRequestSchema) {
     return this.sessionsService.create(createRequestSchema)
   }
