@@ -2,6 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { CreateRequestSchema } from '../schemas';
 import { UpdateRequestSchema } from '../schemas';
 
+/*
+* For the purpose of acceptance test, response typing is not enforced atm
+*/
 @Injectable()
 export class SessionsService {
   findOne(id: string) {

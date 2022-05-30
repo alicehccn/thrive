@@ -11,6 +11,9 @@ import { SessionsService } from '../services';
 import { CreateRequestSchema } from '../schemas';
 import { UpdateRequestSchema } from '../schemas';
 
+/*
+* For the purpose of acceptance test, response typing is not enforced atm
+*/
 @Controller('sessions')
 export class SessionsController {
   constructor(private readonly sessionsService: SessionsService) {}
@@ -21,7 +24,7 @@ export class SessionsController {
   }
 
   @Get('')
-  findByProvider() {
+  findAll() {
     return this.sessionsService.findAll();
   }
 
