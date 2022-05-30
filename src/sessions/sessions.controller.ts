@@ -6,40 +6,40 @@ import {
   Patch,
   Param,
   Delete,
-} from "@nestjs/common";
-import { SessionsService } from "./sessions.service";
-import { CreateSessionSchema } from "./schemas/create-session.schema";
-import { UpdateSessionSchema } from "./schemas/update-session.schema";
+} from '@nestjs/common'
+import { SessionsService } from './sessions.service'
+import { CreateRequestSchema } from './schemas'
+import { UpdateRequestSchema } from './schemas'
 
-@Controller("sessions")
+@Controller('sessions')
 export class SessionsController {
   constructor(private readonly sessionsService: SessionsService) {}
 
-  @Get(":id")
-  findOne(@Param("id") id: string) {
-    return this.sessionsService.findOne(id);
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.sessionsService.findOne(id)
   }
 
-  @Get("")
+  @Get('')
   findByProvider() {
-    return this.sessionsService.findAll();
+    return this.sessionsService.findAll()
   }
 
   @Post()
-  create(@Body() createSessionSchema: CreateSessionSchema) {
-    return this.sessionsService.create(createSessionSchema);
+  create(@Body() createRequestSchema: CreateRequestSchema) {
+    return this.sessionsService.create(createRequestSchema)
   }
 
-  @Patch(":id")
+  @Patch(':id')
   update(
-    @Param("id") id: string,
-    @Body() updateSessionSchema: UpdateSessionSchema
+    @Param('id') id: string,
+    @Body() updateRequestSchema: UpdateRequestSchema
   ) {
-    return this.sessionsService.update(updateSessionSchema);
+    return this.sessionsService.update(updateRequestSchema)
   }
 
-  @Delete(":id")
-  cancel(@Param("id") id: string) {
-    return this.sessionsService.cancel(id);
+  @Delete(':id')
+  cancel(@Param('id') id: string) {
+    return this.sessionsService.cancel(id)
   }
 }

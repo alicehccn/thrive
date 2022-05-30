@@ -1,7 +1,7 @@
 export class Session {
-  Id: String;
-  Time: Date;
-  Patient: String;
-  Provider: String;
-  Channel: String;
+  Id: string
+  Time: Date
+  Patient: string
+  Provider: string
+  Channel: string
 }
