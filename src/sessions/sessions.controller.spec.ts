@@ -17,5 +17,4 @@ describe("SessionsController", () => {
   it("should be defined", () => {
     expect(controller).toBeDefined();
   });
-
 });

@@ -4,7 +4,6 @@ import { UpdateSessionSchema } from "./schemas/update-session.schema";
 
 @Injectable()
 export class SessionsService {
-
   findOne(id: string) {
     return `This action returns session ${id}`;
   }
@@ -20,7 +19,7 @@ export class SessionsService {
   update(updateSessionRequest: UpdateSessionSchema) {
     return `This action updates session ${updateSessionRequest.Id}`;
   }
-  
+
   cancel(id: string) {
     return `This action removes session ${id}`;
   }

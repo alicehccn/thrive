@@ -15,7 +15,6 @@ import { UpdateSessionSchema } from "./schemas/update-session.schema";
 export class SessionsController {
   constructor(private readonly sessionsService: SessionsService) {}
 
-
   @Get(":id")
   findOne(@Param("id") id: string) {
     return this.sessionsService.findOne(id);
@@ -32,7 +31,10 @@ export class SessionsController {
   }
 
   @Patch(":id")
-  update(@Param("id") id: string, @Body() updateSessionSchema: UpdateSessionSchema) {
+  update(
+    @Param("id") id: string,
+    @Body() updateSessionSchema: UpdateSessionSchema
+  ) {
     return this.sessionsService.update(updateSessionSchema);
   }
 
