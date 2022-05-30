@@ -17,6 +17,6 @@ export const sessionCreator = (): CreateRequestSchema => {
   console.log(session.id)
   return {
     session,
-    id: session.id
+    id: session.id,
   }
 }

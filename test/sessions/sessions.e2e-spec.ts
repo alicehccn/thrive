@@ -3,7 +3,7 @@ import { INestApplication } from '@nestjs/common'
 import * as request from 'supertest'
 import { SessionsModule } from '../../src/sessions'
 import { uuid } from 'uuidv4'
-import { sessionCreator, sessionMock } from './sessions.e2e-mock'
+import { sessionCreator } from './sessions.e2e-mock'
 
 describe('AppController (e2e)', () => {
   let app: INestApplication
