@@ -30,6 +30,9 @@ jobs:
           name: Run format
           command: npm run format
       - run:
+          name: Run eslint
+          command: npm run lint
+      - run:
           name: Run tests
           command: npm test
 
