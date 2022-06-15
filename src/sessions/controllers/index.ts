@@ -1,1 +1,1 @@
-export { SessionsController } from './sessions.controller';
+export { SessionsController } from "./sessions.controller";

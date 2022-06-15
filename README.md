@@ -1,3 +1,3 @@
-# Thrivé
+# Thrive
 
 ## Sessions API
