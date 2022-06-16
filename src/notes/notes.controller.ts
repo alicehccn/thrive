@@ -1,15 +1,14 @@
-import { Controller, Get, Param } from '@nestjs/common';
-import { get } from 'http';
+import { Controller, Get, Param } from "@nestjs/common";
 
-@Controller('notes')
+@Controller("notes")
 export class NotesController {
   @Get()
-  findAll() {
-    return 'This action returns all notes';
+  findAll(): string {
+    return "This action returns all notes";
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
+  @Get(":id")
+  findOne(@Param("id") id: string): string {
     return `This action returns #${id} notes`;
   }
 }
