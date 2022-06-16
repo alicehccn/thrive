@@ -1,8 +1,8 @@
-import { NestFactory } from '@nestjs/core'
-import { SessionsModule } from './sessions'
+import { NestFactory } from "@nestjs/core";
+import { AppModule } from "./app.module";
 
-async function startServer() {
-  const app = await NestFactory.create(SessionsModule)
-  await app.listen(3000)
+async function bootstrap(): Promise<void> {
+  const app = await NestFactory.create(AppModule);
+  await app.listen(3000);
 }
-startServer()
+bootstrap();
