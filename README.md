@@ -1,3 +1,1 @@
-# Thrive
-
-## Notes API
+# Notes Service
