@@ -15,4 +15,4 @@ import { MikroOrmModule } from '@mikro-orm/nestjs'
   controllers: [SessionsController],
   providers: [SessionsService],
 })
-export class SessionsModule { }
+export class SessionsModule {}
