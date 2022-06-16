@@ -1,3 +1,3 @@
 # Thrive
 
-## Sessions API
+## Notes API
