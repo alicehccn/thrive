@@ -22,10 +22,6 @@ module.exports = {
       {
         "selector": "interface",
         "format": ["PascalCase"],
-        "custom": {
-          "regex": "^I[A-Z]",
-          "match": true
-        }
       }
     ],
     '@typescript-eslint/explicit-function-return-type': 'error',

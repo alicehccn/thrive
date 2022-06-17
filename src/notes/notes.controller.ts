@@ -6,13 +6,20 @@ import {
   Param,
   Patch,
   Post,
+  Query,
 } from "@nestjs/common";
+
+interface PaginationQueryInterface {
+  offset: number;
+  limit: number;
+}
 
 @Controller("notes")
 export class NotesController {
   @Get()
-  findAll(): string {
-    return "This action returns all notes";
+  findAll(@Query() paginationQuery: PaginationQueryInterface): string {
+    const { offset, limit } = paginationQuery;
+    return `This action returns ${limit} notes starting from No.${offset}`;
   }
 
   @Get(":id")
