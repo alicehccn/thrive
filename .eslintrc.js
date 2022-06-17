@@ -20,9 +20,21 @@ module.exports = {
     "@typescript-eslint/naming-convention": [
       "error",
       {
-        "selector": "interface",
-        "format": ["PascalCase"],
-      }
+        selector: 'default',
+        format: ['camelCase'],
+        leadingUnderscore: 'allow',
+        trailingUnderscore: 'allow',
+      },
+      {
+        selector: 'variable',
+        format: ['camelCase', 'UPPER_CASE'],
+        leadingUnderscore: 'allow',
+        trailingUnderscore: 'allow',
+      },
+      {
+        selector: 'typeLike',
+        format: ['PascalCase'],
+      },
     ],
     '@typescript-eslint/explicit-function-return-type': 'error',
     '@typescript-eslint/explicit-module-boundary-types': 'error',
