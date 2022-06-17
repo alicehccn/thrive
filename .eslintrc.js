@@ -25,6 +25,7 @@ module.exports = {
         leadingUnderscore: 'allow',
         trailingUnderscore: 'allow',
       },
+    
       {
         selector: 'variable',
         format: ['camelCase', 'UPPER_CASE'],
@@ -39,5 +40,6 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'error',
     '@typescript-eslint/explicit-module-boundary-types': 'error',
     '@typescript-eslint/no-explicit-any': 'error',
+    "jsx-quotes": ["error", "prefer-single"]
   },
 };

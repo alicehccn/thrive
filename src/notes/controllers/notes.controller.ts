@@ -8,6 +8,8 @@ import {
   Post,
   Query,
 } from "@nestjs/common";
+import { Notes } from "../entities";
+import { NotesService } from "../services";
 
 interface PaginationQueryInterface {
   offset: number;
@@ -16,15 +18,18 @@ interface PaginationQueryInterface {
 
 @Controller("notes")
 export class NotesController {
+  constructor(private readonly notesService: NotesService) {}
+
   @Get()
-  findAll(@Query() paginationQuery: PaginationQueryInterface): string {
+  findAll(@Query() paginationQuery: PaginationQueryInterface): Notes[] {
     const { offset, limit } = paginationQuery;
-    return `This action returns ${limit} notes starting from No.${offset}`;
+    console.log(offset, limit);
+    return this.notesService.findAll();
   }
 
   @Get(":id")
-  findOne(@Param("id") id: string): string {
-    return `This action returns note-${id}`;
+  findOne(@Param("id") id: string): Notes {
+    return this.notesService.findOne(id);
   }
 
   @Post()
