@@ -23,7 +23,7 @@ describe("AppController (e2e)", () => {
 
   it("GET notes/:id", async () => {
     await request(app.getHttpServer())
-      .get(`/notes/123`)
+      .get("/notes/123")
       .expect(200)
       .expect(Body);
   });
