@@ -23,7 +23,7 @@ describe("AppController (e2e)", () => {
 
   it("GET notes/:id", async () => {
     await request(app.getHttpServer())
-      .get(`/notes/${v4()}`)
+      .get(`/notes/123`)
       .expect(200)
       .expect(Body);
   });
@@ -47,9 +47,8 @@ describe("AppController (e2e)", () => {
   });
 
   it("DELETE notes/:id", async () => {
-    const req = notesMock;
     await request(app.getHttpServer())
-      .delete(`/notes/${req.id}`)
+      .delete(`/notes/${v4()}`)
       .expect(200)
       .expect(Body);
   });
