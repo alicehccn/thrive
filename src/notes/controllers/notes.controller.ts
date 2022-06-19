@@ -8,8 +8,7 @@ import {
   Post,
   Query,
 } from "@nestjs/common";
-import { CreateNotesDto } from "../dto/create-notes.dto";
-import { UpdateNotesDto } from "../dto/update-notes.dto";
+import { CreateNotesDto, UpdateNotesDto } from "../dto";
 import { Notes } from "../entities";
 import { NotesService } from "../services";
 

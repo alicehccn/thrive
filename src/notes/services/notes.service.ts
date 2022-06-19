@@ -1,7 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { v4 } from "uuid";
-import { CreateNotesDto } from "../dto/create-notes.dto";
-import { UpdateNotesDto } from "../dto/update-notes.dto";
+import { CreateNotesDto, UpdateNotesDto } from "../dto";
 import { Notes } from "../entities";
 
 @Injectable()
