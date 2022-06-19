@@ -8,6 +8,8 @@ import {
   Post,
   Query,
 } from "@nestjs/common";
+import { CreateNotesDto } from "../dto/create-notes.dto";
+import { UpdateNotesDto } from "../dto/update-notes.dto";
 import { Notes } from "../entities";
 import { NotesService } from "../services";
 
@@ -21,30 +23,34 @@ export class NotesController {
   constructor(private readonly notesService: NotesService) {}
 
   @Get()
-  findAll(@Query() paginationQuery: PaginationQueryInterface): Notes[] {
+  async findAll(
+    @Query() paginationQuery: PaginationQueryInterface
+  ): Promise<Notes[]> {
     const { offset, limit } = paginationQuery;
     console.log(offset, limit);
     return this.notesService.findAll();
   }
 
   @Get(":id")
-  findOne(@Param("id") id: string): Notes {
+  async findOne(@Param("id") id: string): Promise<Notes> {
     return this.notesService.findOne(id);
   }
 
   @Post()
-  create(@Body() body: unknown): unknown {
-    return body;
+  async create(@Body() body: CreateNotesDto): Promise<string> {
+    return this.notesService.create(body);
   }
 
   @Patch(":id")
-  update(@Param("id") id: string, @Body() body: unknown): string {
-    console.log(body);
-    return `This action updates note-${id}`;
+  async update(
+    @Param("id") id: string,
+    @Body() body: UpdateNotesDto
+  ): Promise<void> {
+    return this.notesService.update(id, body);
   }
 
   @Delete(":id")
-  delete(@Param("id") id: string): string {
-    return `This action deletes note-${id}`;
+  async delete(@Param("id") id: string): Promise<void> {
+    return this.notesService.delete(id);
   }
 }

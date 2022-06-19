@@ -2,7 +2,6 @@ import { Test, TestingModule } from "@nestjs/testing";
 import { Body, INestApplication } from "@nestjs/common";
 import * as request from "supertest";
 import { AppModule } from "../../src/app.module";
-import { v4 } from "uuid";
 import { notesMock } from "./notes.controller.e2e-mock";
 
 describe("AppController (e2e)", () => {
@@ -39,8 +38,9 @@ describe("AppController (e2e)", () => {
 
   it("PATCH notes/:id", async () => {
     const req = notesMock;
+    req.id = "123";
     await request(app.getHttpServer())
-      .patch(`/notes/${req.id}`)
+      .patch("/notes/123")
       .send(req)
       .expect(200)
       .expect(Body);
@@ -48,7 +48,7 @@ describe("AppController (e2e)", () => {
 
   it("DELETE notes/:id", async () => {
     await request(app.getHttpServer())
-      .delete(`/notes/${v4()}`)
+      .delete("/notes/123")
       .expect(200)
       .expect(Body);
   });

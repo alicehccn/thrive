@@ -1,4 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
+import { v4 } from "uuid";
+import { CreateNotesDto } from "../dto/create-notes.dto";
+import { UpdateNotesDto } from "../dto/update-notes.dto";
 import { Notes } from "../entities";
 
 @Injectable()
@@ -6,7 +9,7 @@ export class NotesService {
   private notes: Notes[] = [
     {
       id: "123",
-      date: new Date(),
+      date: new Date().toISOString(),
       title: "Day 0",
       subtitles: "",
       body: "Let's get started.",
@@ -25,23 +28,32 @@ export class NotesService {
     return notes;
   }
 
-  create(createNotesDto: Notes): string {
-    this.notes.push(createNotesDto);
-    return createNotesDto.id;
+  create(createNotesDto: CreateNotesDto): string {
+    const newNotes = {
+      id: v4(),
+      ...createNotesDto,
+    };
+    this.notes.push(newNotes);
+    return newNotes.id;
   }
 
-  update(id: string, updateNotesDto: Notes): void {
+  update(id: string, updateNotesDto: UpdateNotesDto): void {
     const existingNotes = this.findOne(id);
     if (existingNotes) {
       // update notes
-      console.log("updated:", updateNotesDto);
+      console.log("updated:", `notes-${updateNotesDto.id}`);
+    } else {
+      throw new HttpException(`Notes-${id} not found`, HttpStatus.NOT_FOUND);
     }
   }
 
   delete(id: string): void {
-    const index = this.notes.findIndex((note) => note.id === id);
-    if (index >= 0) {
-      this.notes.splice(index, 1);
+    const existingNotes = this.findOne(id);
+    if (existingNotes) {
+      // delete notes
+      console.log("deleted:", `notes-${id}`);
+    } else {
+      throw new HttpException(`Notes-${id} not found`, HttpStatus.NOT_FOUND);
     }
   }
 }

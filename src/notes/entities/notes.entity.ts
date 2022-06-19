@@ -1,6 +1,6 @@
 export class Notes {
-  id: string;
-  date: Date;
+  id?: string;
+  date: string;
   title?: string;
   subtitles?: string;
   body: string;
