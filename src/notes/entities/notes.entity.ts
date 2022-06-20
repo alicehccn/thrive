@@ -1,7 +1,19 @@
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+
+@Entity()
 export class Notes {
-  id?: string;
+  @PrimaryGeneratedColumn()
+  id: string;
+
+  @Column()
   date: string;
+
+  @Column()
   title?: string;
+
+  @Column()
   subtitles?: string;
+
+  @Column()
   body: string;
 }
