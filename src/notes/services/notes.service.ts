@@ -31,7 +31,7 @@ export class NotesService {
   }
 
   async update(id: string, updateNotesDto: UpdateNotesDto): Promise<void> {
-    const existingNotes = this.notesRepository.findOne({ where: { id: id } });
+    const existingNotes = this.findOne(id);
     if (existingNotes) {
       const notes = await this.notesRepository.preload({
         ...updateNotesDto,
@@ -43,9 +43,7 @@ export class NotesService {
   }
 
   async delete(id: string): Promise<void> {
-    const existingNotes = await this.notesRepository.findOne({
-      where: { id: id },
-    });
+    const existingNotes = this.findOne(id);
     if (existingNotes) {
       await this.notesRepository.delete(id);
     } else {
