@@ -16,4 +16,7 @@ export class Note {
 
   @Column()
   body: string;
+
+  @Column({ default: 0 })
+  recommendations: number;
 }

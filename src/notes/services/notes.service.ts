@@ -1,16 +1,18 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { PaginationQueryDto } from "src/common/dto/pagination-query.dto";
-import { Repository } from "typeorm";
+import { DataSource, Repository } from "typeorm";
 
 import { CreateNotesDto, UpdateNotesDto } from "../dto";
 import { Note } from "../entities";
+import { Event } from "../../events/entities/event.entity";
 
 @Injectable()
 export class NotesService {
   constructor(
     @InjectRepository(Note)
-    private readonly notesRepository: Repository<Note>
+    private readonly notesRepository: Repository<Note>,
+    private readonly dataSource: DataSource
   ) {}
 
   async findAll(paginationQuery: PaginationQueryDto): Promise<Note[]> {
@@ -53,6 +55,30 @@ export class NotesService {
       await this.notesRepository.delete(id);
     } else {
       throw new HttpException(`Note-${id} not found`, HttpStatus.NOT_FOUND);
+    }
+  }
+
+  async recommendNote(note: Note): Promise<void> {
+    const queryRunner = this.dataSource.createQueryRunner();
+
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+    try {
+      note.recommendations++;
+
+      const recommendEvent = new Event();
+      recommendEvent.name = "recommend_note";
+      recommendEvent.type = "note";
+      recommendEvent.payload = { noteId: note.id };
+
+      await queryRunner.manager.save(note);
+      await queryRunner.manager.save(recommendEvent);
+
+      await queryRunner.commitTransaction();
+    } catch (err) {
+      await queryRunner.rollbackTransaction();
+    } finally {
+      await queryRunner.release();
     }
   }
 }
