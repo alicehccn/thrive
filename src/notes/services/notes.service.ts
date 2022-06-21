@@ -1,5 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
+import { PaginationQueryDto } from "src/common/dto/pagination-query.dto";
 import { Repository } from "typeorm";
 
 import { CreateNotesDto, UpdateNotesDto } from "../dto";
@@ -12,8 +13,12 @@ export class NotesService {
     private readonly notesRepository: Repository<Notes>
   ) {}
 
-  async findAll(): Promise<Notes[]> {
-    return await this.notesRepository.find();
+  async findAll(paginationQuery: PaginationQueryDto): Promise<Notes[]> {
+    const { offset, limit } = paginationQuery;
+    return await this.notesRepository.find({
+      skip: offset,
+      take: limit,
+    });
   }
 
   async findOne(id: string): Promise<Notes> {

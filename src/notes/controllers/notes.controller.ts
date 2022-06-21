@@ -25,9 +25,7 @@ export class NotesController {
   async findAll(
     @Query() paginationQuery: PaginationQueryInterface
   ): Promise<Notes[]> {
-    const { offset, limit } = paginationQuery;
-    console.log(offset, limit);
-    return this.notesService.findAll();
+    return this.notesService.findAll(paginationQuery);
   }
 
   @Get(":id")
