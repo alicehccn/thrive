@@ -9,7 +9,7 @@ import {
   Query,
 } from "@nestjs/common";
 import { CreateNotesDto, UpdateNotesDto } from "../dto";
-import { Notes } from "../entities";
+import { Note } from "../entities";
 import { NotesService } from "../services";
 
 interface PaginationQueryInterface {
@@ -24,12 +24,12 @@ export class NotesController {
   @Get()
   async findAll(
     @Query() paginationQuery: PaginationQueryInterface
-  ): Promise<Notes[]> {
+  ): Promise<Note[]> {
     return this.notesService.findAll(paginationQuery);
   }
 
   @Get(":id")
-  async findOne(@Param("id") id: string): Promise<Notes> {
+  async findOne(@Param("id") id: string): Promise<Note> {
     return this.notesService.findOne(id);
   }
 

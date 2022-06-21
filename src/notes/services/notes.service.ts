@@ -4,16 +4,16 @@ import { PaginationQueryDto } from "src/common/dto/pagination-query.dto";
 import { Repository } from "typeorm";
 
 import { CreateNotesDto, UpdateNotesDto } from "../dto";
-import { Notes } from "../entities";
+import { Note } from "../entities";
 
 @Injectable()
 export class NotesService {
   constructor(
-    @InjectRepository(Notes)
-    private readonly notesRepository: Repository<Notes>
+    @InjectRepository(Note)
+    private readonly notesRepository: Repository<Note>
   ) {}
 
-  async findAll(paginationQuery: PaginationQueryDto): Promise<Notes[]> {
+  async findAll(paginationQuery: PaginationQueryDto): Promise<Note[]> {
     const { offset, limit } = paginationQuery;
     return await this.notesRepository.find({
       skip: offset,
@@ -21,10 +21,10 @@ export class NotesService {
     });
   }
 
-  async findOne(id: string): Promise<Notes> {
+  async findOne(id: string): Promise<Note> {
     const notes = await this.notesRepository.findOne({ where: { id: id } });
     if (!notes) {
-      throw new HttpException(`Notes-${id} not found`, HttpStatus.NOT_FOUND);
+      throw new HttpException(`Note-${id} not found`, HttpStatus.NOT_FOUND);
     }
     return notes;
   }
@@ -43,7 +43,7 @@ export class NotesService {
       });
       await this.notesRepository.save(notes);
     } else {
-      throw new HttpException(`Notes-${id} not found`, HttpStatus.NOT_FOUND);
+      throw new HttpException(`Note-${id} not found`, HttpStatus.NOT_FOUND);
     }
   }
 
@@ -52,7 +52,7 @@ export class NotesService {
     if (existingNotes) {
       await this.notesRepository.delete(id);
     } else {
-      throw new HttpException(`Notes-${id} not found`, HttpStatus.NOT_FOUND);
+      throw new HttpException(`Note-${id} not found`, HttpStatus.NOT_FOUND);
     }
   }
 }

@@ -1,1 +1,1 @@
-export { Notes } from "./notes.entity";
+export { Note } from "./note.entity";
