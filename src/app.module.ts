@@ -3,19 +3,20 @@ import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { NotesModule } from "./notes/notes.module";
 import { TypeOrmModule } from "@nestjs/typeorm";
+
 @Module({
   imports: [
     NotesModule,
     TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
+      type: "postgres",
+      host: "localhost",
       port: 5432,
-      username: 'postgres',
-      password: 'pass123',
-      database: 'postgres',
+      username: "admin",
+      password: "pass123",
+      database: "postgres",
       autoLoadEntities: true,
       synchronize: true, // disable in prod
-    })
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],

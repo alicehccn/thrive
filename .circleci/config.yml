@@ -33,11 +33,8 @@ jobs:
           name: Run eslint
           command: npm run lint
       - run:
-          name: Run unit tests
+          name: Run tests
           command: npm test
-      - run:
-          name: Run e2e tests
-          command: npm run test:e2e
 
 workflows:
   # Below is the definition of your workflow.

@@ -1,56 +1,51 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
-import { v4 } from "uuid";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Repository } from "typeorm";
+
 import { CreateNotesDto, UpdateNotesDto } from "../dto";
 import { Notes } from "../entities";
 
 @Injectable()
 export class NotesService {
-  private notes: Notes[] = [
-    {
-      id: "123",
-      date: new Date().toISOString(),
-      title: "Day 0",
-      subtitles: "",
-      body: "Let's get started.",
-    },
-  ];
+  constructor(
+    @InjectRepository(Notes)
+    private readonly notesRepository: Repository<Notes>
+  ) {}
 
-  findAll(): Notes[] {
-    return this.notes;
+  async findAll(): Promise<Notes[]> {
+    return await this.notesRepository.find();
   }
 
-  findOne(id: string): Notes {
-    const notes = this.notes.filter((note) => note.id === id)[0];
+  async findOne(id: string): Promise<Notes> {
+    const notes = await this.notesRepository.findOne({ where: { id: id } });
     if (!notes) {
       throw new HttpException(`Notes-${id} not found`, HttpStatus.NOT_FOUND);
     }
     return notes;
   }
 
-  create(createNotesDto: CreateNotesDto): string {
-    const newNotes = {
-      id: v4(),
-      ...createNotesDto,
-    };
-    this.notes.push(newNotes);
-    return newNotes.id;
+  async create(createNotesDto: CreateNotesDto): Promise<string> {
+    const { raw: res } = await this.notesRepository.insert(createNotesDto);
+    return res[0];
   }
 
-  update(id: string, updateNotesDto: UpdateNotesDto): void {
-    const existingNotes = this.findOne(id);
+  async update(id: string, updateNotesDto: UpdateNotesDto): Promise<void> {
+    const existingNotes = await this.notesRepository.findOne({
+      where: { id: id },
+    });
     if (existingNotes) {
-      // update notes
-      console.log("updated:", `notes-${updateNotesDto.id}`);
+      await this.notesRepository.update(id, updateNotesDto);
     } else {
       throw new HttpException(`Notes-${id} not found`, HttpStatus.NOT_FOUND);
     }
   }
 
-  delete(id: string): void {
-    const existingNotes = this.findOne(id);
+  async delete(id: string): Promise<void> {
+    const existingNotes = await this.notesRepository.findOne({
+      where: { id: id },
+    });
     if (existingNotes) {
-      // delete notes
-      console.log("deleted:", `notes-${id}`);
+      await this.notesRepository.delete(id);
     } else {
       throw new HttpException(`Notes-${id} not found`, HttpStatus.NOT_FOUND);
     }
