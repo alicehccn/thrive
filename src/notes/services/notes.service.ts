@@ -25,16 +25,18 @@ export class NotesService {
   }
 
   async create(createNotesDto: CreateNotesDto): Promise<string> {
-    const { raw: res } = await this.notesRepository.insert(createNotesDto);
-    return res[0];
+    const notes = this.notesRepository.create(createNotesDto);
+    const res = await this.notesRepository.save(notes);
+    return res.id;
   }
 
   async update(id: string, updateNotesDto: UpdateNotesDto): Promise<void> {
-    const existingNotes = await this.notesRepository.findOne({
-      where: { id: id },
-    });
+    const existingNotes = this.notesRepository.findOne({ where: { id: id } });
     if (existingNotes) {
-      await this.notesRepository.update(id, updateNotesDto);
+      const notes = await this.notesRepository.preload({
+        ...updateNotesDto,
+      });
+      await this.notesRepository.save(notes);
     } else {
       throw new HttpException(`Notes-${id} not found`, HttpStatus.NOT_FOUND);
     }
