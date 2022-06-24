@@ -27,6 +27,9 @@ jobs:
       - node/install-packages:
           # If you are using yarn, change the line below from "npm" to "yarn"
           pkg-manager: npm
+      - run: 
+          name: Run build
+          command: npm run build
       - run:
           name: Run format
           command: npm run format
@@ -47,13 +50,15 @@ workflows:
       - build-and-test
       # For running simple node tests, you could optionally use the node/test job from the orb to replicate and replace the job above in fewer lines.
       # - node/test
+  deploy:
+    jobs:
       - aws-ecr/build-and-push-image:
-                aws-access-key-id: AWS_ACCESS_KEY_ID 
-                aws-secret-access-key: AWS_SECRET_ACCESS_KEY 
-                docker-login: true 
-                dockerfile: Dockerfile 
-                dockerhub-password: DOCKERHUB_PASSWORD 
-                dockerhub-username: DOCKERHUB_USER 
-                region: AWS_DEFAULT_REGION
-                registry-id: DOCKERHUB_REGISTRY_ID 
-                repo: thrive    
+          aws-access-key-id: AWS_ACCESS_KEY_ID 
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY 
+          docker-login: true 
+          dockerhub-password: DOCKERHUB_PASSWORD 
+          dockerhub-username: DOCKERHUB_USERNAME 
+          public-registry: true 
+          region: AWS_DEFAULT_REGION 
+          registry-id: DOCKERHUB_REGISTRY_ID 
+          repo: thrive 
