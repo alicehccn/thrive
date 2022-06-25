@@ -36,6 +36,21 @@ jobs:
       - run:
           name: Run tests
           command: npm test
+  login-aws:
+      - run:
+          name: Login AWS
+          command: aws ecr get-login-password | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.us-west-2.amazonaws.com
+
+  # aws-ecr/build-and-push-image:
+  #   aws-access-key-id: AWS_ACCESS_KEY_ID 
+  #   aws-secret-access-key: AWS_SECRET_ACCESS_KEY 
+  #   docker-login: true 
+  #   dockerfile: Dockerfile 
+  #   dockerhub-password: DOCKERHUB_PASSWORD 
+  #   dockerhub-username: DOCKERHUB_USER 
+  #   region: ${AWS_DEFAULT_REGION}
+  #   registry-id: DOCKERHUB_REGISTRY_ID 
+  #   repo: thrive
 
 workflows:
   # Below is the definition of your workflow.
@@ -45,15 +60,5 @@ workflows:
   build-and-test:
     jobs:
       - build-and-test
-      # For running simple node tests, you could optionally use the node/test job from the orb to replicate and replace the job above in fewer lines.
-      # - node/test
-      - aws-ecr/build-and-push-image:
-                aws-access-key-id: AWS_ACCESS_KEY_ID 
-                aws-secret-access-key: AWS_SECRET_ACCESS_KEY 
-                docker-login: true 
-                dockerfile: Dockerfile 
-                dockerhub-password: DOCKERHUB_PASSWORD 
-                dockerhub-username: DOCKERHUB_USER 
-                region: ${AWS_DEFAULT_REGION}
-                registry-id: DOCKERHUB_REGISTRY_ID 
-                repo: thrive    
+      - login-aws
+      # - aws-ecr/build-and-push-image
