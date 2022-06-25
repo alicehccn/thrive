@@ -34,7 +34,8 @@ commands:
       - run:
           name: Login AWS ECR
           command: |
-            aws ecr get-login-password | docker login --username AWS --password-stdin 686971707721.dkr.ecr.us-west-2.amazonaws.com
+            docker login -u AWS -p $(aws ecr get-login-password --region us-west-2) 686971707721.dkr.ecr.us-west-2.amazonaws.com
+
 
   push-docker-image:
       description: "Push Docker Image"
