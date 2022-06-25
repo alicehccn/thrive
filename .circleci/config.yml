@@ -63,5 +63,4 @@ commands:
             name: Push image
             command: |
               . venv/bin/activate
-              aws ecr get-login-password | docker login -u AWS -p ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com
-              docker push $FULL_IMAGE_NAME
+              docker login -u AWS -p $(aws ecr get-login --region us-west-2) ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com
