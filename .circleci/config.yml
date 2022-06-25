@@ -33,6 +33,10 @@ jobs:
           name: Run eslint
           command: npm run lint
 
+      # - run:
+      #     name: Run tests
+          # command: npm test
+
   deploy:
       executor: aws-cli/default
       steps:
@@ -41,7 +45,7 @@ jobs:
             profile-name: example
         - run:
             name: Login AWS ECR
-            command: docker login -u AWS --password-stdin $(aws ecr get-login-password --region us-west-2) 686971707721.dkr.ecr.us-west-2.amazonaws.com
+            command: docker login -u AWS --password-stdin aws configure 686971707721.dkr.ecr.us-west-2.amazonaws.com
 
 
 workflows:
