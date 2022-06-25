@@ -33,23 +33,7 @@ jobs:
           name: Run eslint
           command: npm run lint
 
-      # - run:
-      #     name: Run tests
-          # command: npm test
-
-      # - run:
-      #     name: Login AWS ECR
-      #     command: docker login -u AWS --password-stdin $(aws ecr get-login-password --region us-west-2) 686971707721.dkr.ecr.us-west-2.amazonaws.com
-
-      # - run:
-      #     name: Push image
-      #     command: |
-      #       . venv/bin/activate
-      #       eval $(aws ecr get-login --region us-west-2 --no-include-email)
-      #       docker push 686971707721.dkr.ecr.us-west-2.amazonaws.com/alicehccn/thrive:$CIRCLE_BRANCH-$CIRCLE_SHA1
-
-
-  aws-cli-example:
+  deploy:
       executor: aws-cli/default
       steps:
         - checkout
@@ -57,7 +41,7 @@ jobs:
             profile-name: example
         - run:
             name: Login AWS ECR
-            command: aws ecr get-login-password | docker login --username AWS --password-stdin 686971707721.dkr.ecr.us-west-2.amazonaws.com
+            command: docker login -u AWS --password-stdin $(aws ecr get-login-password --region us-west-2) 686971707721.dkr.ecr.us-west-2.amazonaws.com
 
 
 workflows:
