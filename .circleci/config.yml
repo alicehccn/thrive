@@ -12,7 +12,7 @@ jobs:
       - run:
           name: Setup common environment variables
           command: |
-            echo 'export FULL_IMAGE_NAME="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/alicehccn/thrive:${CIRCLE_BRANCH}-${CIRCLE_SHA1}"' >> $BASH_ENV
+            echo 'export FULL_IMAGE_NAME="${AWS_ACCOUNT_ID}.dkr.ecr.us-west-2.amazonaws.com/alicehccn/thrive:${CIRCLE_BRANCH}-${CIRCLE_SHA1}"' >> $BASH_ENV
       - run:
           name: Build image
           command: |
@@ -39,8 +39,8 @@ commands:
             name: Push image
             command: |
               . venv/bin/activate
-              eval $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
-              docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/alicehccn/thrive:$CIRCLE_BRANCH-$CIRCLE_SHA1
+              eval $(aws ecr get-login --region us-west-2 --no-include-email)
+              docker push $AWS_ACCOUNT_ID.dkr.ecr.us-west-2.amazonaws.com/alicehccn/thrive:$CIRCLE_BRANCH-$CIRCLE_SHA1
 
 
 workflows:
