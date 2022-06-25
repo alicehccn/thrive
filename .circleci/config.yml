@@ -1,56 +1,67 @@
 version: 2.1
-
-orbs:
-  # The Node.js orb contains a set of prepackaged CircleCI configuration you can utilize
-  # Orbs reduce the amount of configuration required for common tasks.
-  # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/node
-  node: circleci/node@4.7
-  aws-cli: circleci/aws-cli@3.1.1
-
-  # aws-ecr: circleci/aws-ecr@8.1.2
-
 jobs:
-  # Below is the definition of your job to build and test your app, you can rename and customize it as you want.
-  build-and-test:
-    # These next lines define a Docker executor: https://circleci.com/docs/2.0/executor-types/
-    # You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # A list of available CircleCI Docker Convenience Images are available here: https://circleci.com/developer/images/image/cimg/node
+  build-deploy:
     docker:
-      - image: cimg/node:16.10
-    # Then run your tests!
-    # CircleCI will report the results back to your VCS provider.
+      - image: circleci/python:3.6.1
+        auth:
+          username: $DOCKERHUB_USER
+          password: $DOCKERHUB_PASSWORD
+    working_directory: ~/repo
     steps:
-      # Checkout the code as the first step.
+      - setup_remote_docker:
+          docker_layer_caching: true
       - checkout
-      # Next, the node orb's install-packages step will install the dependencies from a package.json.
-      # The orb install-packages step will also automatically cache them for faster future runs.
-      - node/install-packages:
-          pkg-manager: npm
-      - run:
-          name: Run format
-          command: npm run format
-      - run:
-          name: Run eslint
-          command: npm run lint
-
-      # - run:
-      #     name: Run tests
-          # command: npm test
-
-  deploy:
-      executor: aws-cli/default
-      steps:
-        - checkout
-        - aws-cli/setup:
-            profile-name: example
-        - run:
-            name: Login AWS ECR
-            command: docker login
-
+      - install-aws-venv
+      - setup-env-variables
+      - build-docker-image
+      - push-docker-image
 
 workflows:
   version: 2.1
-  party-time:
+  build-deploy:
     jobs:
-      - build-and-test
-      - deploy
+      - build-deploy:
+          filters:
+            branches:
+              only:
+                - main
+          context:
+            - docker-hub-creds
+            - alicehccn
+
+commands:
+  install-aws-venv:
+    description: "Install AWS in venv"
+    steps:
+      - run:
+          name: Install awscli
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install awscli>=1.16.116
+
+  setup-env-variables:
+    description: "Setup common environment variables"
+    steps:
+      - run:
+          name: Setup ENV Variables
+          command: |
+            echo 'export FULL_IMAGE_NAME="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/alice/thrive:${CIRCLE_BRANCH}-${CIRCLE_SHA1}"' >> $BASH_ENV
+
+  build-docker-image:
+    description: "Build Docker Image"
+    steps:
+      - run:
+          name: Build Docker Image
+          command: |
+            docker build -f .deployment/Dockerfile -t $FULL_IMAGE_NAME .
+
+  push-docker-image:
+      description: "Push Docker Image"
+      steps:
+        - run:
+            name: Push image
+            command: |
+              . venv/bin/activate
+              eval $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+              docker push $FULL_IMAGE_NAME
