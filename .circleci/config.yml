@@ -49,4 +49,4 @@ workflows:
   party-time:
     jobs:
       - build-and-test
-      - aws-cli-example
+      - deploy
