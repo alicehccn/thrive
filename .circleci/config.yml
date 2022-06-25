@@ -38,6 +38,10 @@ jobs:
           # command: npm test
 
       - run:
+          name: Install awscli
+          command: apt-get install awscli
+
+      - run:
           name: Login AWS ECR
           command: docker login -u AWS --password-stdin $(aws ecr get-login-password --region us-west-2) 686971707721.dkr.ecr.us-west-2.amazonaws.com
 
