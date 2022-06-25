@@ -45,7 +45,7 @@ jobs:
             profile-name: example
         - run:
             name: Login AWS ECR
-            command: docker login -u AWS --password-stdin $(aws configure) 686971707721.dkr.ecr.us-west-2.amazonaws.com
+            command: docker login
 
 
 workflows:
