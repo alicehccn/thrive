@@ -63,5 +63,5 @@ commands:
             name: Push image
             command: |
               . venv/bin/activate
-              docker login -u ${DOCKERHUB_USER} -p ${DOCKERHUB_PASSWORD}
+              docker login -u ${DOCKERHUB_USER} -p $(aws ecr get-login-password --region us-west-2)
               docker push $FULL_IMAGE_NAME
