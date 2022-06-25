@@ -49,7 +49,7 @@ jobs:
       #       docker push 686971707721.dkr.ecr.us-west-2.amazonaws.com/alicehccn/thrive:$CIRCLE_BRANCH-$CIRCLE_SHA1
 
 
-    aws-cli-example:
+  aws-cli-example:
       executor: aws-cli/default
       steps:
         - checkout
@@ -59,7 +59,7 @@ jobs:
 
 workflows:
   version: 2.1
-  build-and-test:
+  party-time:
     jobs:
       - build-and-test
       - aws-cli-example
