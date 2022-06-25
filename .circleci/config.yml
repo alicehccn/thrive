@@ -63,5 +63,5 @@ commands:
             name: Push image
             command: |
               . venv/bin/activate
-              docker login -u ${DOCKERHUB_USERNAME}
+              docker login -u ${DOCKERHUB_USER}
               
