@@ -63,5 +63,5 @@ commands:
             name: Push image
             command: |
               . venv/bin/activate
-              docker login -u AWS -p $(aws ecr get-login --region us-west-2) 
+              docker login
               
