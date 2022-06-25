@@ -54,6 +54,6 @@ workflows:
                 dockerfile: Dockerfile 
                 dockerhub-password: DOCKERHUB_PASSWORD 
                 dockerhub-username: DOCKERHUB_USER 
-                region: AWS_DEFAULT_REGION
+                region: ${AWS_DEFAULT_REGION}
                 registry-id: DOCKERHUB_REGISTRY_ID 
                 repo: thrive    
