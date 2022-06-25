@@ -55,7 +55,10 @@ jobs:
         - checkout
         - aws-cli/setup:
             profile-name: example
-        - run: echo "Run your code here"
+        - run:
+            name: Login AWS ECR
+            command: docker login -u AWS --password-stdin $(aws ecr get-login-password --region us-west-2) 686971707721.dkr.ecr.us-west-2.amazonaws.com
+
 
 workflows:
   version: 2.1
