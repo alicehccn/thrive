@@ -63,5 +63,5 @@ commands:
             name: Push image
             command: |
               . venv/bin/activate
-              eval $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+              eval $(aws ecr get-login-password --region $AWS_DEFAULT_REGION --no-include-email)
               docker push $FULL_IMAGE_NAME
