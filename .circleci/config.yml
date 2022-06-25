@@ -45,7 +45,7 @@ jobs:
             profile-name: example
         - run:
             name: Login AWS ECR
-            command: docker login -p $(aws configure)
+            command: docker login
 
 
 workflows:
