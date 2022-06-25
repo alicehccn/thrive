@@ -31,6 +31,10 @@ commands:
             python3 -m venv venv
             . venv/bin/activate
             pip install awscli>=1.16.116
+      - run:
+          name: Login AWS ECR
+          command: |
+            aws ecr get-login-password | docker login --username AWS --password-stdin 686971707721.dkr.ecr.us-west-2.amazonaws.com
 
   push-docker-image:
       description: "Push Docker Image"
