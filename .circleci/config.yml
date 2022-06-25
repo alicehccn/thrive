@@ -46,7 +46,7 @@ commands:
       - run:
           name: Setup ENV Variables
           command: |
-            echo 'export FULL_IMAGE_NAME="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/alice/thrive:${CIRCLE_BRANCH}-${CIRCLE_SHA1}"' >> $BASH_ENV
+            echo 'export FULL_IMAGE_NAME="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/alicehccn/thrive:${CIRCLE_BRANCH}-${CIRCLE_SHA1}"' >> $BASH_ENV
 
   build-docker-image:
     description: "Build Docker Image"
