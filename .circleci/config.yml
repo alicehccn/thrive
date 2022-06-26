@@ -71,4 +71,5 @@ commands:
         - run:
             name: Docker Push
             command: |
-              docker push thrive
+              docker push public.ecr.aws/q9q5y0u8/thrive:latest
+
