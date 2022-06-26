@@ -46,7 +46,7 @@ commands:
       - run:
           name: Setup ENV Variables
           command: |
-            echo 'export FULL_IMAGE_NAME="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/alicehccn/thrive:${CIRCLE_BRANCH}-${CIRCLE_SHA1}"' >> $BASH_ENV
+            echo 'export FULL_IMAGE_NAME="public.ecr.aws/q9q5y0u8/thrive:${CIRCLE_BRANCH}-${CIRCLE_SHA1}"' >> $BASH_ENV
 
   build-docker-image:
     description: "Build Docker Image"
@@ -63,6 +63,11 @@ commands:
             name: Push image
             command: |
               . venv/bin/activate
-              docker login -u ${DOCKERHUB_USER} -p ${DOCKERHUB_PASSWORD}
-              docker push $FULL_IMAGE_NAME
+              aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/q9q5y0u8
+              docker build -t thrive .
+              docker tag thrive:latest public.ecr.aws/q9q5y0u8/thrive:latest
+              docker push public.ecr.aws/q9q5y0u8/thrive:latest
+
+
+
               
