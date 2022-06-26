@@ -30,15 +30,15 @@ workflows:
             - alicehccn
 
 commands:
-  # install-aws-venv:
-  #   description: "Install AWS in venv"
-  #   steps:
-  #     - run:
-  #         name: Install awscli
-  #         command: |
-  #           python3 -m venv venv
-  #           . venv/bin/activate
-  #           pip install awscli>=2.7.9
+  install-aws-venv:
+    description: "Install AWS in venv"
+    steps:
+      - run:
+          name: Install awscli
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install awscli>=2.7.9
 
   # setup-env-variables:
   #   description: "Setup common environment variables"
@@ -71,4 +71,4 @@ commands:
         - run:
             name: Docker Push
             command: |
-              docker push public.ecr.aws/q9q5y0u8/thrive:latest 
+              docker push thrive
