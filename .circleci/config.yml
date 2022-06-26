@@ -11,7 +11,7 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: true
       - checkout
-      - install-aws-venv
+      # - install-aws-venv
       # - setup-env-variables
       # - build-docker-image
       - push-docker-image
@@ -30,15 +30,15 @@ workflows:
             - alicehccn
 
 commands:
-  install-aws-venv:
-    description: "Install AWS in venv"
-    steps:
-      - run:
-          name: Install awscli
-          command: |
-            python3 -m venv venv
-            . venv/bin/activate
-            pip install awscli>=2.7.9
+  # install-aws-venv:
+  #   description: "Install AWS in venv"
+  #   steps:
+  #     - run:
+  #         name: Install awscli
+  #         command: |
+  #           python3 -m venv venv
+  #           . venv/bin/activate
+  #           pip install awscli>=2.7.9
 
   # setup-env-variables:
   #   description: "Setup common environment variables"
@@ -68,3 +68,7 @@ commands:
             name: Docker Build
             command: |
               docker build -f .deployment/Dockerfile -t thrive .
+        - run:
+            name: Docker Push
+            command: |
+              docker push public.ecr.aws/q9q5y0u8/thrive:latest 
