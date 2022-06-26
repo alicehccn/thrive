@@ -12,8 +12,6 @@ jobs:
           docker_layer_caching: true
       - checkout
       - install-aws-venv
-      # - setup-env-variables
-      # - build-docker-image
       - push-docker-image
 
 workflows:
@@ -39,22 +37,6 @@ commands:
             python3 -m venv venv
             . venv/bin/activate
             pip install awscli>=2.7.9
-
-  # setup-env-variables:
-  #   description: "Setup common environment variables"
-  #   steps:
-  #     - run:
-  #         name: Setup ENV Variables
-  #         command: |
-  #           echo 'export FULL_IMAGE_NAME="503368058473.dkr.ecr.us-west-2.amazonaws.com/thrive/thrive:${CIRCLE_BRANCH}-${CIRCLE_SHA1}"' >> $BASH_ENV
-
-  # build-docker-image:
-  #   description: "Build Docker Image"
-  #   steps:
-  #     - run:
-  #         name: Build Docker Image
-  #         command: |
-  #           docker build -f .deployment/Dockerfile -t $FULL_IMAGE_NAME .
 
   push-docker-image:
       description: "Push Docker Image"
