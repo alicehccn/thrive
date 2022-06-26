@@ -64,5 +64,4 @@ commands:
             command: |
               . venv/bin/activate
               aws ecr-public get-login-password --region us-east-1 | docker login -u AWS -p-stdin public.ecr.aws/q9q5y0u8
-              docker push $FULL_IMAGE_NAME
               
