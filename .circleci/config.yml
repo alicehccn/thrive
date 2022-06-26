@@ -71,7 +71,7 @@ commands:
             name: Check ECR Login
             command: |
               . venv/bin/activate
-              aws ecr get-login-password --region us-west-2 | docker login -u AWS -p-stdin
+              aws ecr get-login-password --region us-west-2
         - run:
             name: Docker Tag
             command: |
