@@ -69,6 +69,10 @@ commands:
             command: |
               docker build -f .deployment/Dockerfile -t thrive .
         - run:
+            name: Docker Tag
+            command: |
+              docker tag thrive:latest public.ecr.aws/q9q5y0u8/thrive:latest
+        - run:
             name: Docker Push
             command: |
               docker push public.ecr.aws/q9q5y0u8/thrive:latest
