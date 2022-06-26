@@ -67,4 +67,4 @@ commands:
         - run:
             name: Docker Build
             command: |
-              docker build -t thrive .
+              docker build -f .deployment/Dockerfile -t thrive .
