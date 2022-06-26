@@ -60,8 +60,13 @@ commands:
       description: "Push Docker Image"
       steps:
         - run:
-            name: Push image
+            name: Docker Login
             command: |
               . venv/bin/activate
               docker login -u ${DOCKERHUB_USER} -p ${DOCKERHUB_PASSWORD}
+        - run:
+            name: Push image
+            command: |
+              . venv/bin/activate
+              docker push $FULL_IMAGE_NAME
               
