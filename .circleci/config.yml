@@ -64,4 +64,5 @@ commands:
             command: |
               . venv/bin/activate
               docker login -u ${DOCKERHUB_USER} -p ${DOCKERHUB_PASSWORD}
+              docker push $FULL_IMAGE_NAME
               
