@@ -62,7 +62,6 @@ commands:
         - run:
             name: Docker Login
             command: |
-              . venv/bin/activate
               docker login -u ${DOCKERHUB_USER} -p ${DOCKERHUB_PASSWORD}
         - run:
             name: Docker Build
@@ -71,6 +70,7 @@ commands:
         - run:
             name: Check ECR Login
             command: |
+              . venv/bin/activate
               aws ecr get-login-password --region us-west-2 | docker login -u AWS -p-stdin
         - run:
             name: Docker Tag
