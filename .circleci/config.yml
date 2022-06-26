@@ -12,8 +12,8 @@ jobs:
           docker_layer_caching: true
       - checkout
       - install-aws-venv
-      - setup-env-variables
-      - build-docker-image
+      # - setup-env-variables
+      # - build-docker-image
       - push-docker-image
 
 workflows:
@@ -38,23 +38,23 @@ commands:
           command: |
             python3 -m venv venv
             . venv/bin/activate
-            pip install awscli>=1.16.116
+            pip install awscli>=2.7.9
 
-  setup-env-variables:
-    description: "Setup common environment variables"
-    steps:
-      - run:
-          name: Setup ENV Variables
-          command: |
-            echo 'export FULL_IMAGE_NAME="public.ecr.aws/q9q5y0u8/thrive:${CIRCLE_BRANCH}-${CIRCLE_SHA1}"' >> $BASH_ENV
+  # setup-env-variables:
+  #   description: "Setup common environment variables"
+  #   steps:
+  #     - run:
+  #         name: Setup ENV Variables
+  #         command: |
+  #           echo 'export FULL_IMAGE_NAME="public.ecr.aws/q9q5y0u8/thrive:${CIRCLE_BRANCH}-${CIRCLE_SHA1}"' >> $BASH_ENV
 
-  build-docker-image:
-    description: "Build Docker Image"
-    steps:
-      - run:
-          name: Build Docker Image
-          command: |
-            docker build -f .deployment/Dockerfile -t $FULL_IMAGE_NAME .
+  # build-docker-image:
+  #   description: "Build Docker Image"
+  #   steps:
+  #     - run:
+  #         name: Build Docker Image
+  #         command: |
+  #           docker build -f .deployment/Dockerfile -t $FULL_IMAGE_NAME .
 
   push-docker-image:
       description: "Push Docker Image"
@@ -64,9 +64,9 @@ commands:
             command: |
               . venv/bin/activate
               docker login -u ${DOCKERHUB_USER} -p ${DOCKERHUB_PASSWORD}
-        - run:
-            name: Push image
-            command: |
-              . venv/bin/activate
-              docker push $FULL_IMAGE_NAME
-              
+        # - run:
+        #     name: Push Image
+        #     command: |
+            
+
+  
