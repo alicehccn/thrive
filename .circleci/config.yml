@@ -62,16 +62,12 @@ commands:
         - run:
             name: Docker Login
             command: |
+              . venv/bin/activate
               docker login -u ${DOCKERHUB_USER} -p ${DOCKERHUB_PASSWORD}
         - run:
             name: Docker Build
             command: |
               docker build -f .deployment/Dockerfile -t thrive .
-        - run:
-            name: Check ECR Login
-            command: |
-              . venv/bin/activate
-              aws ecr get-login-password --region us-west-2
         - run:
             name: Docker Tag
             command: |
