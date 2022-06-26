@@ -46,7 +46,7 @@ commands:
   #     - run:
   #         name: Setup ENV Variables
   #         command: |
-  #           echo 'export FULL_IMAGE_NAME="public.ecr.aws/q9q5y0u8/thrive:${CIRCLE_BRANCH}-${CIRCLE_SHA1}"' >> $BASH_ENV
+  #           echo 'export FULL_IMAGE_NAME="503368058473.dkr.ecr.us-west-2.amazonaws.com/thrive/thrive:${CIRCLE_BRANCH}-${CIRCLE_SHA1}"' >> $BASH_ENV
 
   # build-docker-image:
   #   description: "Build Docker Image"
@@ -68,6 +68,10 @@ commands:
             name: Docker Build
             command: |
               docker build -f .deployment/Dockerfile -t thrive .
+        - run:
+            name: Check ECR Login
+            command: |
+              aws ecr get-login-password --region us-west-2 | docker login -u AWS -p-stdin
         - run:
             name: Docker Tag
             command: |
