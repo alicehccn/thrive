@@ -13,7 +13,7 @@ services:
   nestjs:
     build: 
       context: .
-      dockerfile: ./Dockerfile
+      dockerfile: ./deployment/Dockerfile
     image: tusharchy/nest-and-postgres-application:latest
     environment: 
       - DB_TYPE=${DB_TYPE}
