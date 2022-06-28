@@ -4,9 +4,9 @@ services:
     image: postgres:9.3
     restart: always
     environment: 
-      - POSTGRES_USER=${DATABASE_USER}
-      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
-      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=alicehuang
+      - POSTGRES_PASSWORD=
+      - POSTGRES_DB=thrive
     container_name: postgres-db
     volumes:
       - ./pgdata:/var/lib/postgresql/data
@@ -18,10 +18,10 @@ services:
     environment: 
       - DB_TYPE=${DB_TYPE}
       - POSTGRES_HOST=${POSTGRES_HOST}
-      - POSTGRES_USER=${DATABASE_USER}
-      - POSTGRES_PASS=${DATABASE_PASSWORD}
-      - POSTGRES_DB=${DB_NAME}
-      - POSTGRES_SYNC=false
+      - POSTGRES_USER=alicehuang
+      - POSTGRES_PASS=
+      - POSTGRES_DB=thrive
+      - POSTGRES_SYNC=true   // disabled in prod
       - JWT_SECRET=${JWT_SECRET}
       - POSTGRES_PORT=${POSTGRES_PORT}
       - APP_EXPIRES=${APP_EXPIRES}
