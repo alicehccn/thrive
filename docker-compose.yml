@@ -18,10 +18,11 @@ services:
     environment: 
       - DB_TYPE=${DB_TYPE}
       - POSTGRES_HOST=${POSTGRES_HOST}
-      - POSTGRES_USER=alicehuang
+      - POSTGRES_USERNAME=alicehuang
+      - DB_USERNAME=alicehuang
       - POSTGRES_PASS=
       - POSTGRES_DB=thrive
-      - POSTGRES_SYNC=true   // disabled in prod
+      - POSTGRES_SYNC=true # should be false in prod
       - JWT_SECRET=${JWT_SECRET}
       - POSTGRES_PORT=${POSTGRES_PORT}
       - APP_EXPIRES=${APP_EXPIRES}
