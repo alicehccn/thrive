@@ -13,7 +13,7 @@ services:
   nestjs:
     build: 
       context: .
-      dockerfile: .deployment/Dockerfile
+      dockerfile: ./Dockerfile
     image: alicehccn/thrive:latest
     environment: 
       - DB_TYPE=${DB_TYPE}

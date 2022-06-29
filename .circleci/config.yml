@@ -49,7 +49,7 @@ commands:
         - run:
             name: Docker Build
             command: |
-              docker build -f .deployment/Dockerfile -t thrive .
+              docker build -f ./Dockerfile -t thrive .
         - run:
             name: Docker Tag
             command: |
