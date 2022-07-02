@@ -39,3 +39,4 @@ pgadmin-data
 pgdata
 
 *.pem
+OrthancButterFlyIndex/
