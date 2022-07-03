@@ -46,10 +46,10 @@ workflows:
           context:
             - docker-hub-creds
             - aws-config
+          requires:
+            - lint-and-test
 
 commands:
-  
-
   install-aws-venv:
     description: "Install AWS in venv"
     steps:
