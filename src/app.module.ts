@@ -15,12 +15,15 @@ import { TypeOrmModule } from "@nestjs/typeorm";
       password: process.env.DB_PASSWORD,
       database: process.env.POSTGRES_DB,
       autoLoadEntities: true,
-      synchronize: true, // disable in prod
-      entities: [__dirname + '/**/*.entity.ts', __dirname + '/**/*.entity.js'],
+      synchronize: false,
+      entities: [__dirname + "/**/*.entity.ts", __dirname + "/**/*.entity.js"],
       migrationsRun: false,
       logging: true,
       migrationsTableName: "migration",
-      migrations: [__dirname + '/migration/**/*.ts', __dirname + '/migration/**/*.js'],
+      migrations: [
+        __dirname + "/migration/**/*.ts",
+        __dirname + "/migration/**/*.js",
+      ],
     }),
   ],
   controllers: [AppController],

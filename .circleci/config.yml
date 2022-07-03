@@ -1,5 +1,14 @@
 version: 2.1
 jobs:
+
+  lint-and-test:
+    docker:
+      - image: circleci/node:alpine
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - lint-and-test
+
   build-deploy:
     docker:
       - image: circleci/python:3.6.1
@@ -28,6 +37,25 @@ workflows:
             - aws-config
 
 commands:
+  lint-and-test:
+    steps:
+      - run:
+          name: Install Node Packages
+          command: |
+            npm install
+      - run:
+          name: Run Lint
+          command: |
+            npm run lint
+      - run:
+          name: Run Format
+          command: |
+            npm run format
+      - run:
+          name: Run Test
+          command: |
+            npm run test
+
   install-aws-venv:
     description: "Install AWS in venv"
     steps:
