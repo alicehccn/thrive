@@ -24,11 +24,14 @@ export class NotesService {
   }
 
   async findOne(id: string): Promise<Note> {
-    const notes = await this.notesRepository.findOne({ where: { id: id } });
-    if (!notes) {
+    const note = await this.notesRepository.findOne({
+      where: { id: id },
+      relations: { author: true},
+    });
+    if (!note) {
       throw new HttpException(`Note-${id} not found`, HttpStatus.NOT_FOUND);
     }
-    return notes;
+    return note;
   }
 
   async create(createNotesDto: CreateNotesDto): Promise<string> {

@@ -5,7 +5,7 @@ import {
   JoinTable,
   ManyToOne,
 } from "typeorm";
-import { User } from "./user.entity";
+import { Author } from "./author.entity";
 
 @Entity()
 export class Note {
@@ -28,6 +28,6 @@ export class Note {
   recommendations: number;
 
   @JoinTable()
-  @ManyToOne(() => User, (user) => user.notes)
-  user: string;
+  @ManyToOne(() => Author, (author) => author.notes)
+  author: string;
 }
