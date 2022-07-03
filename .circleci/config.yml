@@ -3,7 +3,7 @@ jobs:
 
   lint-and-test:
     docker:
-      - image: circleci/node:alpine
+      - image: cimg/node:18.4.0
     working_directory: ~/repo
     steps:
       - checkout
