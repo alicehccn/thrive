@@ -40,6 +40,7 @@ workflows:
   version: 2.1
   build-deploy:
     jobs:
+      - lint-and-test
       - build-deploy:
           filters:
             branches:
