@@ -1,4 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+  JoinTable,
+  ManyToOne,
+} from "typeorm";
+import { User } from "./user.entity";
 
 @Entity()
 export class Note {
@@ -19,4 +26,8 @@ export class Note {
 
   @Column({ default: 0 })
   recommendations: number;
+
+  @JoinTable()
+  @ManyToOne(() => User, (user) => user.notes)
+  user: string;
 }

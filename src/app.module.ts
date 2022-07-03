@@ -15,7 +15,7 @@ import { TypeOrmModule } from "@nestjs/typeorm";
       password: process.env.DB_PASSWORD,
       database: process.env.POSTGRES_DB,
       autoLoadEntities: true,
-      synchronize: false,
+      synchronize: true,
       entities: [__dirname + "/**/*.entity.ts", __dirname + "/**/*.entity.js"],
       migrationsRun: false,
       logging: true,
