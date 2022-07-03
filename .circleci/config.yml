@@ -18,10 +18,6 @@ jobs:
           name: Run Format
           command: |
             npm run format
-      - run:
-          name: Run Test
-          command: |
-            npm run test
 
   build-deploy:
     docker:
