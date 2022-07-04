@@ -20,6 +20,7 @@ import { TypeOrmModule } from "@nestjs/typeorm";
       migrationsRun: true,
       logging: true,
       migrationsTableName: "migrations",
+      dropSchema: true,
       migrations: [
         __dirname + "/migrations/**/*.ts",
         __dirname + "/migrations/**/*.js",

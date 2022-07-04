@@ -27,7 +27,7 @@ export class Note {
   @Column({ default: 0 })
   recommendations: number;
 
-  @ManyToOne(() => Author, (author) => author.notes)
+  @ManyToOne(() => Author, (author) => author.id)
   @JoinColumn({ name: "author" })
   author: Author;
 }

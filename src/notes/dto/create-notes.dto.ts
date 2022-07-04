@@ -1,4 +1,5 @@
-import { IsString, IsNotEmpty } from "class-validator";
+import { IsString, IsNotEmpty, IsUUID } from "class-validator";
+import { Author } from "../entities";
 
 export class CreateNotesDto {
   @IsString()
@@ -14,4 +15,7 @@ export class CreateNotesDto {
   @IsString()
   @IsNotEmpty()
   readonly body: string;
+
+  @IsString()
+  readonly author: Author;
 }
