@@ -1,19 +1,22 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
-import { uuid } from "uuidv4";
 
-export class CreateAuthor1656971968413 implements MigrationInterface {
+export class CreateNote1656974386913 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     queryRunner.query(`
-      CREATE TABLE IF NOT EXISTS author (
+      CREATE TABLE IF NOT EXISTS note (
         id UUID NOT NULL UNIQUE PRIMARY KEY, 
-        username VARCHAR(50) NOT NULL UNIQUE
+        date VARCHAR(50),
+        title VARCHAR(50),
+        subtitles VARCHAR(50),
+        body text,
+        author UUID NOT NULL
       )
-  `);
+    `);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     queryRunner.query(`
-      DROP TABLE IF EXISTS author 
+      DROP TABLE IF EXISTS note 
     `);
   }
 }
