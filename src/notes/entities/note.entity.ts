@@ -12,16 +12,16 @@ export class Note {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column()
+  @Column('date')
   date: string;
 
-  @Column()
-  title?: string;
+  @Column('text', {nullable: true})
+  title: string;
 
-  @Column()
-  subtitles?: string;
+  @Column('text', {nullable: true})
+  subtitles: string;
 
-  @Column()
+  @Column('text')
   body: string;
 
   @Column({ default: 0 })
