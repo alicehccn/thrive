@@ -2,7 +2,6 @@ import {
   Column,
   Entity,
   PrimaryGeneratedColumn,
-  JoinTable,
   ManyToOne,
   JoinColumn,
 } from "typeorm";
@@ -13,23 +12,22 @@ export class Note {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column('date')
+  @Column("date")
   date: string;
 
-  @Column('text', {nullable: true})
+  @Column("text", { nullable: true })
   title: string;
 
-  @Column('text', {nullable: true})
+  @Column("text", { nullable: true })
   subtitles: string;
 
-  @Column('text')
+  @Column("text")
   body: string;
 
   @Column({ default: 0 })
   recommendations: number;
 
-  @JoinTable()
-  @ManyToOne(() => Author)
-  @JoinColumn()
-  author: string;
+  @ManyToOne(() => Author, (author) => author.notes)
+  @JoinColumn({ name: "author" })
+  author: Author;
 }
