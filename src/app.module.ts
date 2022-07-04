@@ -17,7 +17,7 @@ import { TypeOrmModule } from "@nestjs/typeorm";
       autoLoadEntities: true,
       synchronize: true, // disable in prod
       entities: [__dirname + "/**/*.entity.ts", __dirname + "/**/*.entity.js"],
-      migrationsRun: false,
+      migrationsRun: true,
       logging: true,
       migrationsTableName: "migration",
       migrations: [
