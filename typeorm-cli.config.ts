@@ -1,12 +1,17 @@
+import { CreateTable1656918134563 } from "src/migrations/1656918134563-CreateTable";
+import { CreateTable1656919661556 } from "src/migrations/1656919661556-CreateTable";
 import { DataSource } from "typeorm";
 
 export default new DataSource({
   type: 'postgres',
   host: 'localhost',
   port: 5432,
-  username: 'postgres',
+  username: 'alicehuang',
   password: 'postgres',
   database: 'postgres',
   entities: [],
-  migrations: [],
+  migrations: [
+    CreateTable1656918134563,
+    CreateTable1656919661556,
+  ],
 });

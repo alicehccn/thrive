@@ -19,10 +19,10 @@ import { TypeOrmModule } from "@nestjs/typeorm";
       entities: [__dirname + "/**/*.entity.ts", __dirname + "/**/*.entity.js"],
       migrationsRun: true,
       logging: true,
-      migrationsTableName: "migration",
+      migrationsTableName: "migrations",
       migrations: [
-        __dirname + "/migration/**/*.ts",
-        __dirname + "/migration/**/*.js",
+        __dirname + "/migrations/**/*.ts",
+        __dirname + "/migrations/**/*.js",
       ],
     }),
   ],
