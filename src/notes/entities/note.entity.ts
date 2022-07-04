@@ -4,6 +4,7 @@ import {
   PrimaryGeneratedColumn,
   JoinTable,
   ManyToOne,
+  JoinColumn,
 } from "typeorm";
 import { Author } from "./author.entity";
 
@@ -29,5 +30,6 @@ export class Note {
 
   @JoinTable()
   @ManyToOne(() => Author)
+  @JoinColumn()
   author: string;
 }
