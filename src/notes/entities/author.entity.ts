@@ -1,11 +1,4 @@
-import {
-  Column, 
-  Entity, 
-  PrimaryGeneratedColumn, 
-  OneToMany,
- } from "typeorm";
-import { Note } from "./note.entity";
-
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Author {
@@ -14,7 +7,4 @@ export class Author {
 
   @Column()
   name: string;
-
-  @OneToMany(() => Note, note => note.author)
-  notes: Note[];
 }

@@ -28,6 +28,6 @@ export class Note {
   recommendations: number;
 
   @JoinTable()
-  @ManyToOne(() => Author, (author) => author.notes)
+  @ManyToOne(() => Author)
   author: string;
 }
