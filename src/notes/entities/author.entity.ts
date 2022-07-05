@@ -6,6 +6,6 @@ export class Author {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column("text", { nullable: true })
+  @Column("text")
   username: string;
 }

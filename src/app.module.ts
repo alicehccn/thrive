@@ -16,7 +16,7 @@ console.log(__dirname);
       password: process.env.DB_PASSWORD,
       database: process.env.POSTGRES_DB,
       autoLoadEntities: true,
-      synchronize: true, // disable in prod
+      synchronize: false, // disable in prod
       entities: [__dirname + "/**/*.entity.ts", __dirname + "/**/*.entity.js"],
       migrationsRun: true,
       logging: true,
