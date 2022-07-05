@@ -1,4 +1,5 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
+import { uuid } from "uuidv4";
 
 export class CreateNote1656974386913 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
@@ -9,14 +10,22 @@ export class CreateNote1656974386913 implements MigrationInterface {
         title VARCHAR(50),
         subtitles VARCHAR(50),
         body text,
-        author UUID NOT NULL
-      )
+        author UUID
+      );
+      CREATE TABLE IF NOT EXISTS author (
+        id UUID NOT NULL UNIQUE PRIMARY KEY, 
+        username VARCHAR(50) UNIQUE
+      );
+      INSERT INTO author (id, username)
+        VALUES ('${uuid()}', 'aria')
+        ON CONFLICT (username) DO NOTHING;
     `);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(`
-      DROP TABLE IF EXISTS note 
+      DROP TABLE IF EXISTS note;
+      DROP TABLE IF EXISTS author CASCADE;
     `);
   }
 }
