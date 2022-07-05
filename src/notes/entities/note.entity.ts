@@ -30,6 +30,6 @@ export class Note {
   @JoinColumn({ name: "author" })
   author: Author;
 
-  @CreateDateColumn({ name: "createdAt" }) "createdAt": Date;
-  @UpdateDateColumn({ name: "updatedAt" }) "updatedAt": Date;
+  @CreateDateColumn({ name: "createdat" }) "createdAt": Date;
+  @UpdateDateColumn({ name: "updatedat" }) "updatedAt": Date;
 }

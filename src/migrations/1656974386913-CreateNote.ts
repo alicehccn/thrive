@@ -10,6 +10,7 @@ export class CreateNote1656974386913 implements MigrationInterface {
         title VARCHAR(50),
         subtitles VARCHAR(50),
         body text,
+        recommendations INT,
         author UUID
       );
       CREATE TABLE IF NOT EXISTS author (
