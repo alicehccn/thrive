@@ -4,6 +4,8 @@ import {
   PrimaryGeneratedColumn,
   ManyToOne,
   JoinColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
 } from "typeorm";
 import { Author } from "./author.entity";
 
@@ -11,9 +13,6 @@ import { Author } from "./author.entity";
 export class Note {
   @PrimaryGeneratedColumn("uuid")
   id: string;
-
-  @Column("date")
-  date: string;
 
   @Column("text", { nullable: true })
   title: string;
@@ -30,4 +29,7 @@ export class Note {
   @ManyToOne(() => Author, (author) => author.id)
   @JoinColumn({ name: "author" })
   author: Author;
+
+  @CreateDateColumn({ name: 'created_at' }) 'created_at': Date;
+  @UpdateDateColumn({ name: 'updated_at' }) 'updated_at': Date;
 }
