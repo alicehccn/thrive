@@ -11,6 +11,10 @@ jobs:
           command: |
             npm install
       - run:
+          name: Run Build
+          command: |
+            npm run build
+      - run:
           name: Run Lint
           command: |
             npm run lint

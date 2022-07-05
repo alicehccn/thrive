@@ -3,6 +3,7 @@ import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { NotesModule } from "./notes/notes.module";
 import { TypeOrmModule } from "@nestjs/typeorm";
+console.log(__dirname)
 
 @Module({
   imports: [
@@ -19,7 +20,6 @@ import { TypeOrmModule } from "@nestjs/typeorm";
       entities: [__dirname + "/**/*.entity.ts", __dirname + "/**/*.entity.js"],
       migrationsRun: true,
       logging: true,
-      migrationsTableName: "migrations",
       dropSchema: true,
       migrations: [
         __dirname + "/migrations/**/*.ts",
