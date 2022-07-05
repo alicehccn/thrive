@@ -23,6 +23,5 @@ export class CreateNote1656974386913 implements MigrationInterface {
   }
 
   // eslint-disable-next-line
-  public async down(queryRunner: QueryRunner): Promise<void> {
-  }
+  public async down(queryRunner: QueryRunner): Promise<void> {}
 }
