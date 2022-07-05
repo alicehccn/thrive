@@ -1,11 +1,4 @@
-import {
-  Column,
-  Entity,
-  PrimaryGeneratedColumn,
-  OneToMany,
-  Unique,
-} from "typeorm";
-import { Note } from "./note.entity";
+import { Column, Entity, PrimaryGeneratedColumn, Unique } from "typeorm";
 
 @Unique(["username"])
 @Entity()

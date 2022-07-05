@@ -3,7 +3,7 @@ import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { NotesModule } from "./notes/notes.module";
 import { TypeOrmModule } from "@nestjs/typeorm";
-console.log(__dirname)
+console.log(__dirname);
 
 @Module({
   imports: [
