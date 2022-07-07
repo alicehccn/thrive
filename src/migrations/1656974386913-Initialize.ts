@@ -28,14 +28,18 @@ export class Initialize1656974386913 implements MigrationInterface {
         subtitles,
         body,
         recommendations,
-        author
+        author,
+        createdAt,
+        updatedAt
       ) VALUES (
         '${v4()}',
         'Day 0',
         '',
         'Getting started.',
         0,
-        '${authorId}'
+        '${authorId}',
+        now(),
+        now()
       );
     `);
   }
