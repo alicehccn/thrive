@@ -20,7 +20,7 @@ console.log(__dirname);
       entities: [__dirname + "/**/*.entity.ts", __dirname + "/**/*.entity.js"],
       migrationsRun: true,
       logging: true,
-      dropSchema: false,
+      dropSchema: true,
       migrations: [
         __dirname + "/migrations/**/*.ts",
         __dirname + "/migrations/**/*.js",
