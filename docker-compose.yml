@@ -1,15 +1,6 @@
 
 version: '3.8'
 services:
-  db:
-    image: postgres:latest
-    volumes:
-      - ./pgdata:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-    ports:
-      - 5432:5432
   app:
     image: $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION_1.amazonaws.com/thrive:latest
     ports:
@@ -19,6 +10,4 @@ services:
       - POSTGRES_HOST=$AWS_ACCOUNT_ID.$AWS_REGION_2.compute.amazonaws.com
       - PGUSER=postgres
       - PGPASSWORD=postgres
-    depends_on:
-      - db
     restart: always
