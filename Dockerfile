@@ -4,12 +4,12 @@ WORKDIR /app
 
 COPY ./ /app
 
-RUN yarn install
-RUN yarn build
+RUN npm install
+RUN npm run build
 
 EXPOSE 5432
 EXPOSE 3000
 EXPOSE 80
 EXPOSE 443
 
-CMD ["yarn", "start"]
+CMD ["npm", "run", "start"]
