@@ -25,12 +25,13 @@
   ### Install Docker
     sudo yum install docker
     sudo service docker start
+    sudo chmod 777 /var/run/docker.sock
 
   ### Login Docker
-    aws ecr get-login-password --region AWS_REGION_1 | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.AWS_REGION_1.amazonaws.com
+    aws ecr get-login-password --region ${AWS_REGION_1} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION_1}.amazonaws.com
 
   ### Pull Image
-    docker pull ${AWS_ACCOUNT_ID}.dkr.ecr.AWS_REGION_1.amazonaws.com/thrive:latest
+    docker pull ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION_1}.amazonaws.com/thrive:latest
 
 
 ## Dependencies

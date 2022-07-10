@@ -23,6 +23,9 @@ export class Note {
   @Column("text")
   body: string;
 
+  @Column("text", { nullable: true })
+  image: string;
+
   @Column({ default: 0 })
   recommendations: number;
 
