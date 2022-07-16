@@ -7,9 +7,8 @@
     Docker 20.10.16
 
 ## Development
-    npm install
-    npm run build
-    npm run start:dev
+    yarn install
+    yarn start
 
 ## Deployment
 
@@ -32,6 +31,9 @@
 
   ### Pull Image
     docker pull ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION_1}.amazonaws.com/thrive:latest
+
+  ### Run App
+    docker-compose up
 
 
 ## Dependencies
