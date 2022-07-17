@@ -1,4 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn, Unique } from "typeorm";
+import {
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+  Unique,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from "typeorm";
 
 @Unique(["username"])
 @Entity()
@@ -8,4 +15,7 @@ export class Author {
 
   @Column("text", { unique: true })
   username: string;
+
+  @CreateDateColumn({ name: "createdat" }) "createdAt": Date;
+  @UpdateDateColumn({ name: "updatedat" }) "updatedAt": Date;
 }

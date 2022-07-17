@@ -8,11 +8,11 @@ import { TypeOrmModule } from "@nestjs/typeorm";
   imports: [
     NotesModule,
     TypeOrmModule.forRoot({
-      type: 'postgres',
+      type: "postgres",
       url: process.env.DATABASE_URL,
       autoLoadEntities: true,
       synchronize: true,
-      migrationsRun: true
+      migrationsRun: true,
     }),
   ],
   controllers: [AppController],
