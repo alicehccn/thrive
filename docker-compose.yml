@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   api:
-    image: alicehccn/thrive
+    image: alicehccn/thrive:latest
     depends_on: 
         - postgres
     environment: 
