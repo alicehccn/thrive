@@ -12,6 +12,9 @@ export class createAuthor1658015205318 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.query(`
+            DELETE FROM author WHERE username = 'aria';
+        `)
     }
 
 }
